@@ -34,7 +34,8 @@ jobs:
 
       - name: Build and push image to Docker Hub registry
         run: |
-          docker build -t my_python_ci_usiu_app .; \
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}; \
+          docker build -t my_python_ci_usiu_app . ; \
           docker tag my_python_ci_usiu_app:latest my_python_ci_usiu_app:${{ github.sha }}; \
           docker push keithnjagi/my_python_ci_usiu_app:${{ github.sha }}
 
