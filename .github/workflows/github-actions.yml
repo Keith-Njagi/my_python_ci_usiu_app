@@ -1,5 +1,5 @@
 name: GitHub Actions CI
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} is running on GitHub Actions 🚀
 on: [push]
 jobs:
   Run-Pipeline:
@@ -8,9 +8,11 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
@@ -28,7 +30,6 @@ jobs:
         run: |
           pytest
 
-        
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
@@ -49,26 +50,5 @@ jobs:
             push: true
             tags: ${{ steps.meta.outputs.tags }}-${{ github.sha }}
             labels: ${{ steps.meta.outputs.labels }}
-  
-
-    #   - name: Log into Docker Hub registry
-    #     run: |
-    #       docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
-
-    #   - name: Build and push image to Docker Hub registry
-    #     run: |
-    #       docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}; \
-    #       docker build -t my_python_ci_usiu_app . ; \
-    #       docker tag my_python_ci_usiu_app:latest my_python_ci_usiu_app:${{ github.sha }}; \
-    #       docker push keithnjagi/my_python_ci_usiu_app:${{ github.sha }}
-
-    #   - name: Tag docker image
-    #     run: |
-    #       docker tag my_python_ci_usiu_app:latest my_python_ci_usiu_app:${{ github.sha }}
-
-      
-    #   - name: Push image to Docker Hub registry
-    #     run: |
-    #       docker push keithnjagi/my_python_ci_usiu_app:${{ github.sha }}
   
       - run: echo "🍏 This job's status is ${{ job.status }}."
