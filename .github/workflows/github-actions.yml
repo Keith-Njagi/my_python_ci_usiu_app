@@ -27,4 +27,7 @@ jobs:
       - name: Run Lint Tests
         run: |
           pytest
+      - name: Run Lint Tests
+        run: |
+          docker build -t ${{ github.repository }} .
       - run: echo "🍏 This job's status is ${{ job.status }}."
