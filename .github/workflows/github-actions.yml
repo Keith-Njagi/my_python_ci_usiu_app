@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: GitHub Actions CI
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Lint Tests
         run: |
-          pylint ./main.py --output-format=json:lint.json,colorized
+          pylint ./main.py --output-format=json:lint.json,colorized  
 
       - name: Run Lint Tests
         run: |
