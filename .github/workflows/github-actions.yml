@@ -38,11 +38,7 @@ jobs:
 
       - name: Log in and push image to Docker Hub
         run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}; docker push my_python_ci_usiu_app:${{ github.sha }}
-
-    #   - name: Push docker image to registry
-    #     run: |
-    #       docker push my_python_ci_usiu_app:${{ github.sha }}
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} && docker push my_python_ci_usiu_app:${{ github.sha }}
   
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
