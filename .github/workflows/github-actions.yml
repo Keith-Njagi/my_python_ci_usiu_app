@@ -34,4 +34,15 @@ jobs:
         run: |
           docker tag my_python_ci_usiu_app:latest my_python_ci_usiu_app:${{ github.sha }}
 
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Tag docker image
+        run: |
+          docker push my_python_ci_usiu_app:${{ github.sha }}
+  
+
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
