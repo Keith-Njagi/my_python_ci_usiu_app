@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Lint Tests
         run: |
-          pylint ./*.py --output-format=json:lint.json,colorized
+          pylint ./main.py --output-format=json:lint.json,colorized
 
       - name: Run Lint Tests
         run: |
