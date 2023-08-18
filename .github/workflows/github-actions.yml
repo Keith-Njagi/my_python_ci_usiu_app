@@ -30,4 +30,8 @@ jobs:
       - name: Build docker image
         run: |
           docker build -t my_python_ci_usiu_app .
+      - name: Tag docker image
+        run: |
+          docker tag my_python_ci_usiu_app:latest my_python_ci_usiu_app:${{ github.sha }}
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
